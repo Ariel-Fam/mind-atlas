@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mind Atlas
 
-## Getting Started
+Mind Atlas is a local-first educational psychology library built with Next.js App Router, TypeScript, and Tailwind CSS. It includes 56 evidence-aware articles, topic collections, learning paths, search and filtering, local bookmarks, light/dark/system themes, reading controls, a glossary, references, and an interactive Stroop demonstration.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). If that port is already in use, Next.js prints the alternate local address.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Validate
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+The production build is exported to `out/`. Set `NEXT_PUBLIC_SITE_URL` before building if you want sitemap and social metadata to use an origin other than `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+## Content and structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `lib/content.ts` contains typed articles, references, categories, and learning paths.
+- `components/` contains the interactive shell, search, reading tools, article template, and demonstration.
+- `app/` contains the canonical routes and page metadata.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Bookmarks and theme choices are stored in the current browser and do not synchronize between devices. Mind Atlas is educational and does not provide clinical advice.

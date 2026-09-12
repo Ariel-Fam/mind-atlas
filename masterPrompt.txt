@@ -1,0 +1,347 @@
+Build a complete, polished educational website called **Mind Atlas**, dedicated to human psychology, psychological effects, and the science of everyday behavior.
+
+Use **Next.js App Router, TypeScript, and Tailwind CSS**. The website should combine minimalist editorial design with comprehensive, readable, evidence-based content.
+
+Deliver a working website with fully written articles, functional navigation, responsive layouts, light and dark modes, search, and references. Avoid placeholder copy and unfinished interactions.
+
+1. PURPOSE AND EDITORIAL DIRECTION
+
+Help curious readers understand how people think, feel, remember, learn, make decisions, and interact.
+
+Write for an intelligent general audience without assuming prior psychology knowledge. Explain technical terms when introduced. Use everyday examples from relationships, work, education, shopping, social media, and personal decisions.
+
+Make the information substantial while keeping it approachable through clear headings, short paragraphs, diagrams, examples, and optional deeper explanations.
+
+Distinguish psychological effects, theories, cognitive biases, research findings, and clinical concepts. Do not present every topic as a universal rule.
+
+The central editorial principle is: explain what research suggests, how it was studied, and where its conclusions have limits.
+
+2. VISUAL DESIGN
+
+Create a calm, sophisticated reading experience inspired by a modern research journal and a thoughtfully designed digital library.
+
+Use generous whitespace, restrained borders, precise alignment, subtle interactions, and a strong typographic hierarchy. Keep decorative elements purposeful.
+
+Use this color system:
+
+| Role             | Light mode | Dark mode |
+| ---------------- | ---------- | --------- |
+| Main background  | `#F7FAFC`  | `#101820` |
+| Surface          | `#FFFFFF`  | `#19242E` |
+| Primary text     | `#172B3A`  | `#EFF6FA` |
+| Secondary text   | `#536777`  | `#ADBFCD` |
+| Primary accent   | `#0077B6`  | `#58C4F6` |
+| Accent surface   | `#E5F4FC`  | `#17384A` |
+| Borders          | `#DCE6ED`  | `#334957` |
+| Secondary accent | `#BC4938`  | `#FF9B85` |
+
+
+
+Implement colors as semantic CSS variables. Verify actual foreground and background combinations for accessibility, and adjust values if needed. Do not rely on color alone to communicate meaning.
+
+Use a refined serif for major editorial headings and an exceptionally readable sans-serif for body text and interface controls. Load fonts efficiently with next/font.
+
+Aim for:
+
+* Article text around 17–19px on desktop.
+* Comfortable line height around 1.7.
+* Reading width around 65–75 characters.
+* Subtle corners and minimal shadows.
+* Clear, understated hover and focus states.
+
+Use original inline SVG illustrations: overlapping perceptions, branching decisions, memory associations, attention filters, and social connections. Label conceptual illustrations appropriately; do not make decorative graphics look like measured scientific data.
+
+3. APPLICATION LAYOUT
+
+On wide screens, provide:
+
+* A persistent left sidebar for primary navigation.
+* A central reading area.
+* A compact right-hand table of contents on article pages.
+* A thin reading progress bar fixed along the top edge.
+
+The left sidebar should contain:
+
+* Mind Atlas branding.
+* Search.
+* Home.
+* Explore Psychology.
+* Psychological Effects.
+* Learning Paths.
+* Saved Articles.
+* Glossary.
+* References.
+* About & Editorial Standards.
+* Theme controls.
+
+Highlight the active page and provide expandable topic groups.
+
+On smaller screens, collapse the sidebar into an accessible drawer. Move the article table of contents into a compact expandable control. Maintain comfortable article padding and prevent horizontal overflow.
+
+Keep the interface visually quiet while allowing quick movement through a large content collection.
+
+4. LIGHT AND DARK MODES
+
+Implement light, dark, and system theme options.
+
+Respect the operating system preference initially and persist the reader’s explicit choice. Avoid a flash of the wrong theme and hydration errors.
+
+Apply theme changes consistently to navigation, articles, search dialogs, illustrations, reference panels, interactive examples, and focus indicators.
+
+5. READING PROGRESS
+
+Place a subtle, approximately 3px progress bar at the top of article pages.
+
+Calculate progress from the main article body rather than the full page, excluding navigation, related articles, and the site footer. Start at 0% when reading begins and reach 100% at the end of the article. Handle short articles sensibly.
+
+Update efficiently during scrolling, respond to layout changes, and reset correctly when navigating between articles.
+
+Include an accessible progress label without announcing every scroll update. Do not show a misleading article progress bar on directory pages.
+
+6. HOMEPAGE
+
+Create an editorial homepage with the headline:
+
+“Understand the mind behind everyday life.”
+
+Supporting copy:
+
+“Explore the ideas, psychological effects, and research that help explain how we think, feel, remember, and connect.”
+
+Include:
+
+* A prominent search field.
+* A “Start exploring” action.
+* Featured topic collections.
+* Selected psychological effects with meaningful summaries.
+* A “Start with the fundamentals” learning path.
+* A featured interactive demonstration.
+* A short explanation of the site’s evidence and references policy.
+* Recently updated articles, using actual content update dates.
+
+Use a balanced mix of typography, simple illustrations, and article previews. Make the main browsing experience immediately useful.
+
+7. CONTENT COVERAGE
+
+Create a broad introductory collection and a substantial psychological effects library.
+
+Organize content into these categories:
+
+**Thinking and decision-making**
+
+Confirmation bias, anchoring, availability heuristic, representativeness, framing, loss aversion, sunk cost effect, hindsight bias, outcome bias, overconfidence, base-rate neglect, and the Dunning–Kruger effect.
+
+**Attention and perception**
+
+Selective attention, inattentional blindness, change blindness, Stroop effect, top-down processing, Gestalt grouping principles, and perceptual expectations.
+
+**Memory and learning**
+
+Working memory, reconstructive memory, misinformation effect, serial-position effects, spacing effect, retrieval practice, interference, classical conditioning, operant conditioning, and observational learning.
+
+**Social psychology**
+
+Conformity, obedience, social proof, bystander effect, diffusion of responsibility, social facilitation, social loafing, halo effect, attribution biases, in-group favoritism, and cognitive dissonance.
+
+**Emotion and motivation**
+
+Emotion regulation, stress appraisal, intrinsic and extrinsic motivation, self-determination theory, procrastination, reward learning, habit formation, affective forecasting, and hedonic adaptation.
+
+**Identity and relationships**
+
+Self-concept, self-esteem, social comparison, attachment theory, belonging, empathy, perspective-taking, rejection sensitivity, and interpersonal communication.
+
+**Expectations and everyday judgments**
+
+Mere exposure effect, spotlight effect, illusion of transparency, Barnum effect, placebo and nocebo effects, and the peak-end rule.
+
+**Understanding psychological research**
+
+Correlation versus causation, experimental design, sample size, effect size, uncertainty, confounding, publication bias, replication, preregistration, measurement quality, and cultural generalizability.
+
+Include a minimum of 40 fully developed articles across these categories, with the remaining topics added as complete content if scope permits. Only expose article links when their destination exists; do not populate the interface with empty pages.
+
+8. ARTICLE STRUCTURE
+
+Give every psychological effect article a consistent structure:
+
+* Title.
+* Clear one-sentence definition.
+* Topic category and relevant tags.
+* Estimated reading time derived from actual content.
+* Accurate last-updated date.
+* Concise “At a glance” explanation.
+* A relatable everyday example.
+* Explanation of the proposed mechanism.
+* Description of how researchers study it.
+* Key findings supported by citations.
+* Contexts where the effect may appear.
+* Boundary conditions and limitations.
+* Common misconceptions.
+* Practical implications, with appropriate qualifications.
+* Related concepts and distinctions.
+* A short reflection question.
+* Key takeaways.
+* Full references.
+
+Aim for approximately 700–1,200 words for major articles, allowing shorter entries where that better fits the evidence. Prioritize useful substance over arbitrary length.
+
+For theory and research-method articles, adapt the structure appropriately instead of forcing them into an “effect” template.
+
+Do not imply that recognizing a bias automatically eliminates it. Avoid simplistic claims that a single effect explains another person’s behavior.
+
+9. EVIDENCE AND REFERENCES
+
+Include both article-level references and a dedicated global References page.
+
+Research the content before writing it. Prioritize systematic reviews, meta-analyses, relevant primary studies, and reputable academic educational sources.
+
+For each substantive empirical claim, place a citation near the relevant statement. Where possible, include both foundational research and newer work assessing the finding.
+
+Use numbered inline citations that link to the article’s reference list. Provide a way to navigate back to the cited passage.
+
+Each reference should include:
+
+* Authors.
+* Publication year.
+* Full title.
+* Journal, publisher, or institution.
+* DOI or stable source URL when available.
+* Source type.
+* A brief explanation of what it supports when useful.
+
+Never invent references, DOIs, quotations, statistics, review credentials, or verification dates. Confirm that a cited source actually supports the associated claim. Identify abstract-only access where it limits the discussion.
+
+Use the [Noba psychology collection](https://nobaproject.com/textbooks/introduction-to-psychology-the-full-noba-collection) as one starting point for introductory coverage, then locate topic-specific research. Do not use a general homepage citation as evidence for a precise claim.
+
+Discuss uncertainty and replication findings where relevant. Assess the particular claim being made instead of assigning blanket certainty to an entire field.
+
+Take special care with popular presentations of the Dunning–Kruger effect, attachment styles, ego depletion, social priming, learning styles, and famous historical experiments. Check current evidence before deciding how to describe them.
+
+On the global References page, support searching and filtering by topic, author, year, and source type. Deduplicate references and link each source to the articles that cite it.
+
+10. INTERACTIVE LEARNING
+
+Build several lightweight educational demonstrations:
+
+* A Stroop task comparing congruent and incongruent trials.
+* An anchoring example using alternative numerical starting points.
+* A framing example presenting equivalent information differently.
+* A memory exercise illustrating recall and recognition.
+* A fictional sunk-cost scenario separating past expenditure from future consequences.
+
+Explain what each demonstration illustrates and its limitations. A visitor’s result must not be presented as a diagnosis, personality assessment, intelligence score, or proof that a research finding applies to them.
+
+For timed demonstrations, explain that device and browser conditions affect measurements.
+
+Allow users to reset or skip interactions. Make them keyboard accessible and avoid collecting personal data unnecessarily.
+
+11. DISCOVERY AND READING TOOLS
+
+Implement:
+
+* Search across titles, summaries, tags, and article content.
+* Category and topic filters.
+* Clear empty search states.
+* Alphabetical and reading-time sorting.
+* Article bookmarks stored locally.
+* A Saved Articles page.
+* Related article recommendations based on explicit topic relationships.
+* A glossary with links to relevant articles.
+* Heading anchor links.
+* A share-link action with copy confirmation.
+* A distraction-reduced reading mode.
+* Text size controls.
+* Print-friendly article styling.
+
+Clearly explain that locally saved articles belong to the current browser and do not synchronize between devices.
+
+Create curated learning paths such as:
+
+* Psychology Fundamentals.
+* Better Understanding Decisions.
+* Memory and Effective Learning.
+* Social Influence and Group Behavior.
+* Emotions and Motivation.
+* How to Read Psychological Research.
+
+Sequence each path intentionally, explain its learning goals, and calculate the estimated time from its articles.
+
+12. TECHNICAL IMPLEMENTATION
+
+Follow current stable [Next.js documentation](https://nextjs.org/docs) and use the App Router.
+
+Use TypeScript with strict typing and Tailwind CSS with reusable semantic design tokens.
+
+Prefer Server Components for content and layout. Use Client Components where interaction requires them, including search controls, themes, bookmarks, reading progress, and demonstrations.
+
+Store articles in structured MDX or typed content files. Maintain a separate reference registry keyed by stable source identifiers so articles can reuse citations without duplicating bibliographic data.
+
+Use routes such as:
+
+* /
+* /explore
+* /topics/[slug]
+* /effects
+* /effects/[slug]
+* /articles/[slug]
+* /learning-paths
+* /learning-paths/[slug]
+* /saved
+* /glossary
+* /references
+* /about
+
+Give each article one canonical URL. Distinguish effect articles from broader guides consistently.
+
+Create reusable components for the application shell, sidebar, theme switcher, search dialog, article layout, progress bar, table of contents, evidence notes, citations, references, glossary terms, and related articles.
+
+Provide metadata, a sitemap, meaningful page titles, accessible error states, and a useful not-found page.
+
+Avoid unnecessary backend services. The initial site should work with repository-managed content and local browser preferences.
+
+13. ACCESSIBILITY, MOTION, AND PERFORMANCE
+
+Target WCAG 2.2 AA accessibility.
+
+Include semantic landmarks, a logical heading hierarchy, visible focus states, skip navigation, accessible form labels, and keyboard-operable controls.
+
+Manage focus correctly in drawers and dialogs. Respect reduced-motion preferences.
+
+Use subtle transitions for navigation and interface feedback. Keep article text immediately visible and avoid scroll effects that interfere with reading.
+
+Lazy-load heavier demonstrations when appropriate, minimize client-side JavaScript, and reserve layout space to reduce visual shifts.
+
+14. EDITORIAL STANDARDS
+
+Include an About & Editorial Standards page explaining:
+
+* The educational purpose.
+* How sources are selected.
+* How uncertainty is communicated.
+* How corrections and content updates are handled.
+* The distinction between educational content and individual clinical advice.
+
+Show only real authorship and review information. Do not fabricate a psychologist reviewer, expert approval, or institutional endorsement.
+
+Keep any health-related disclaimer brief and contextual. Avoid reducing mental health conditions to lists of everyday habits or encouraging self-diagnosis.
+
+15. COMPLETION CRITERIA
+
+Deliver the complete project with working components, styling, fully written content, and concise setup instructions.
+
+Verify:
+
+* Every visible navigation item has a working destination.
+* Search and filters return the correct articles.
+* Theme choices persist.
+* Bookmarks persist and can be removed.
+* Reading progress tracks the article accurately.
+* Tables of contents follow the correct headings.
+* Citations resolve to the correct references.
+* Mobile drawers and dialogs work with a keyboard.
+* Direct article URLs load correctly.
+* Type checking and the production build pass.
+* Both themes remain readable across mobile, tablet, and desktop.
+
+The finished result should feel like a carefully edited psychology library: minimalist in appearance, comprehensive in content, and transparent about its evidence.

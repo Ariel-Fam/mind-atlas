@@ -1,0 +1,2 @@
+import type { Metadata } from "next";import { SavedGrid } from "@/components/article-tools";import { articles } from "@/lib/content";
+export const metadata:Metadata={title:"Saved articles"};export default function Saved(){return <main id="main-content" className="directory-page"><header className="directory-header"><p className="kicker">Your library</p><h1>Saved articles</h1><p>Your reading list is stored only in this browser. It does not synchronize between devices.</p></header><SavedGrid items={articles}/></main>}

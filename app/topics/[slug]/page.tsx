@@ -1,0 +1,4 @@
+import { notFound } from "next/navigation";import { SearchLibrary } from "@/components/search-library";import { articles,categories } from "@/lib/content";
+const toSlug=(s:string)=>s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+export function generateStaticParams(){return categories.map(category=>({slug:toSlug(category)}))}
+export default async function Topic({params}:{params:Promise<{slug:string}>}){const slug=(await params).slug;const category=categories.find(c=>toSlug(c)===slug);if(!category)notFound();const items=articles.filter(a=>a.category===category);return <main id="main-content" className="directory-page"><header className="directory-header"><p className="kicker">Topic collection</p><h1>{category}</h1><p>{items.length} evidence-aware introductions, organized to help you connect concepts rather than memorize labels.</p></header><SearchLibrary items={items}/></main>}
