@@ -38,6 +38,7 @@ function applyTheme(value: Theme) {
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const [theme, setTheme] = useState<Theme>("system");
   useEffect(() => {
     const saved =
@@ -47,9 +48,19 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(id);
   }, []);
   useEffect(() => {
+    const saved = localStorage.getItem("mind-atlas-sidebar-collapsed") === "true";
+    const id = setTimeout(() => setCollapsed(saved), 0);
+    return () => clearTimeout(id);
+  }, []);
+  useEffect(() => {
     const id = setTimeout(() => setOpen(false), 0);
     return () => clearTimeout(id);
   }, [path]);
+  const toggleCollapsed = () => {
+    const next = !collapsed;
+    setCollapsed(next);
+    localStorage.setItem("mind-atlas-sidebar-collapsed", String(next));
+  };
   const cycle = () => {
     const next: Theme =
       theme === "system" ? "light" : theme === "light" ? "dark" : "system";
@@ -59,14 +70,15 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   };
   const sidebar = (
     <aside
-      className={`sidebar ${open ? "is-open" : ""}`}
+      id="site-sidebar"
+      className={`sidebar ${open ? "is-open" : ""} ${collapsed && !open ? "is-collapsed" : ""}`}
       aria-label="Site navigation"
     >
       <div className="sidebar-top">
         <Link className="brand" href="/" aria-label="Mind Atlas home">
           <span className="brand-mark">M</span>
 
-          <div>
+          <div className="brand-copy">
 
             <span>
               Mind Atlas<small>Psychology, mapped</small>
@@ -79,6 +91,17 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           
           
         </Link>
+
+        <button
+          className="sidebar-collapse-toggle"
+          onClick={toggleCollapsed}
+          aria-controls="site-sidebar"
+          aria-expanded={!collapsed}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          <span aria-hidden="true">{collapsed ? "›" : "‹"}</span>
+        </button>
 
       
         <button
@@ -103,8 +126,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                 href={href}
                 key={href}
               >
-                <span>{icon}</span>
-                {name}
+                <span className="nav-icon" aria-hidden="true">{icon}</span>
+                <span className="nav-text">{name}</span>
               </Link>
             ))}
           </div>
@@ -130,7 +153,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           aria-label={`Theme: ${theme}. Activate to change`}
         >
           <span aria-hidden="true">◐</span>
-          <span>{theme[0].toUpperCase() + theme.slice(1)} theme</span>
+          <span className="theme-label">{theme[0].toUpperCase() + theme.slice(1)} theme</span>
           <small>↻</small>
         </button>
         <p>Educational, not clinical advice.</p>
@@ -138,7 +161,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     </aside>
   );
   return (
-    <div className="site-shell">
+    <div className={`site-shell ${collapsed ? "sidebar-collapsed" : ""}`}>
       {sidebar}
       {open && (
         <button
